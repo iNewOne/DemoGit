@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SecondViewController.h"
 
 @interface ViewController (){
     CAGradientLayer * layer;
@@ -40,9 +41,18 @@
     [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 
     
+    UIButton * button = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 30)];
+    button.backgroundColor = [UIColor orangeColor];
+    [button addTarget:self action:@selector(jump) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
     
     
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)jump{
+    SecondViewController * vc = [[SecondViewController alloc]init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 // 定时器触发方法
