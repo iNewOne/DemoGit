@@ -21,6 +21,6 @@
 
 @interface IETabBar : UITabBar
 
-@property (nonatomic, weak) id <IETabBarDelegate> delegate;
+@property (nonatomic, weak) id <IETabBarDelegate> ieDelegate;
 
 @end

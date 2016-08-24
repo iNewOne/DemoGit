@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77424B431D6D3FCB003EAF73 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 77424B421D6D3FCB003EAF73 /* UIView+Extension.m */; };
+		77424B461D6D402D003EAF73 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 77424B451D6D402D003EAF73 /* UIBarButtonItem+Extension.m */; };
 		776082221D6C4119000B1631 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 776082211D6C4119000B1631 /* main.m */; };
 		776082251D6C4119000B1631 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 776082241D6C4119000B1631 /* AppDelegate.m */; };
 		7760822D1D6C4119000B1631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7760822C1D6C4119000B1631 /* Assets.xcassets */; };
@@ -23,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77424B411D6D3FCB003EAF73 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		77424B421D6D3FCB003EAF73 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		77424B441D6D402D003EAF73 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
+		77424B451D6D402D003EAF73 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		77424B481D6D4114003EAF73 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7760821D1D6C4119000B1631 /* Login.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Login.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		776082211D6C4119000B1631 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		776082231D6C4119000B1631 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +68,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77424B401D6D3F9B003EAF73 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				77424B411D6D3FCB003EAF73 /* UIView+Extension.h */,
+				77424B421D6D3FCB003EAF73 /* UIView+Extension.m */,
+				77424B441D6D402D003EAF73 /* UIBarButtonItem+Extension.h */,
+				77424B451D6D402D003EAF73 /* UIBarButtonItem+Extension.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		776082141D6C4119000B1631 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +98,7 @@
 		7760821F1D6C4119000B1631 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				77424B401D6D3F9B003EAF73 /* Category */,
 				7760824D1D6C440D000B1631 /* CustomeClass */,
 				776082401D6C424B000B1631 /* ContentVC */,
 				776082231D6C4119000B1631 /* AppDelegate.h */,
@@ -92,6 +111,7 @@
 				776082381D6C413C000B1631 /* LoginViewController.m */,
 				7760823A1D6C414E000B1631 /* RegisterViewController.h */,
 				7760823B1D6C414E000B1631 /* RegisterViewController.m */,
+				77424B481D6D4114003EAF73 /* PrefixHeader.pch */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -207,9 +227,11 @@
 				776082491D6C43F7000B1631 /* MyViewController.m in Sources */,
 				776082461D6C42B2000B1631 /* DiscoverViewController.m in Sources */,
 				7760824C1D6C4403000B1631 /* MainViewController.m in Sources */,
+				77424B431D6D3FCB003EAF73 /* UIView+Extension.m in Sources */,
 				776082221D6C4119000B1631 /* main.m in Sources */,
 				776082391D6C413C000B1631 /* LoginViewController.m in Sources */,
 				7760823F1D6C4203000B1631 /* HomeViewController.m in Sources */,
+				77424B461D6D402D003EAF73 /* UIBarButtonItem+Extension.m in Sources */,
 				776082561D6C4482000B1631 /* IETabBar.m in Sources */,
 				7760823C1D6C414E000B1631 /* RegisterViewController.m in Sources */,
 			);
@@ -306,6 +328,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Login/PrefixHeader.pch";
 				INFOPLIST_FILE = Login/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CSII.Xujiangfei.Login;
@@ -317,6 +341,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Login/PrefixHeader.pch";
 				INFOPLIST_FILE = Login/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CSII.Xujiangfei.Login;
@@ -343,6 +369,7 @@
 				776082361D6C4119000B1631 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

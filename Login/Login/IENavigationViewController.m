@@ -17,6 +17,56 @@
 
 @implementation IENavigationViewController
 
++ (void)initialize{
+    
+#pragma mark ------ 统一修改tabbar的选中，未选中文字状态
+    /**
+     *  UI_APPEARANCE_SELECTOR，都可以通过[UITabBarItem appearance]来设置
+     */
+    // 默认
+    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+    attrs[NSFontAttributeName] = [UIFont systemFontOfSize:12];
+    attrs[NSForegroundColorAttributeName] = [UIColor grayColor];
+    
+    // 选中
+    NSMutableDictionary *attrSelected = [NSMutableDictionary dictionary];
+    attrSelected[NSFontAttributeName] = [UIFont systemFontOfSize:12];
+    attrSelected[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    
+    
+    UITabBarItem *item = [UITabBarItem appearance];
+    [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
+    [item setTitleTextAttributes:attrSelected forState:UIControlStateSelected];
+    
+}
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    
+    if (self.viewControllers.count > 0) {
+        // 自动隐藏tabbar
+        viewController.hidesBottomBarWhenPushed = YES;
+        
+        // 定义leftBarButtonItem
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(back) image:@"navigationbar_back" highImage:@"返回"];
+        
+        // 定义rightBarButtonItem
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(more) image:@"navigationbar_more" highImage:@"更多"];
+    }
+    
+    [super pushViewController:viewController animated:animated];
+    
+}
+
+- (void)back{
+    [self popViewControllerAnimated:YES];
+}
+
+- (void)more{
+    [self popToRootViewControllerAnimated:YES];
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

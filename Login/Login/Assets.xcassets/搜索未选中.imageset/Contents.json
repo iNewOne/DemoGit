@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "发现.png",
+      "filename" : "搜索未选中.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "发现@2x.png",
+      "filename" : "搜索未选中@2x.png",
       "scale" : "2x"
     },
     {
