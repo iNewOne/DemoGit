@@ -1,25 +1,37 @@
 
 /*!
- @Header  DiscoverViewController.m
+ @Header  CenterViewController.m
  
  @ProjectName  Login
  
- @Author  Created by NSObject on 16/8/23.
+ @Author  Created by NSObject on 16/8/24.
  
   Copyright © 2016年 NSObject. All rights reserved.
  */
 
-#import "DiscoverViewController.h"
+#import "CenterViewController.h"
 
-@interface DiscoverViewController ()
+@interface CenterViewController ()
 
 @end
 
-@implementation DiscoverViewController
+@implementation CenterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"搜索";
+    
+//    UIImageView * imageView = [[UIImageView alloc]initWithImage:self.screenImage];
+//    [self.view addSubview:imageView];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.alpha = 0.3;
+    
+    
+    UIView * backView = [[UIView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 44, [UIScreen mainScreen].bounds.size.width, 44)];
+    backView.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:backView];
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 

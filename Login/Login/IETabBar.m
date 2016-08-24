@@ -13,7 +13,7 @@
 
 @interface IETabBar()<UITabBarDelegate>
 
-@property (nonatomic, weak) UIButton * publishButton;
+@property (nonatomic, weak) UIButton *plusBtn;
 
 @end
 
@@ -21,55 +21,60 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame]) {
+    self = [super initWithFrame:frame];
+    if (self) {
+        UIButton *plusBtn = [[UIButton alloc] init];
+        [plusBtn setBackgroundImage:[UIImage imageNamed:@"添加"] forState:UIControlStateNormal];
+        [plusBtn setBackgroundImage:[UIImage imageNamed:@"添加"] forState:UIControlStateHighlighted];
+        [plusBtn setImage:[UIImage imageNamed:@"添加"] forState:UIControlStateNormal];
+        [plusBtn setImage:[UIImage imageNamed:@"添加"] forState:UIControlStateHighlighted];
         
-        UIButton *publishButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [publishButton setBackgroundImage:[UIImage imageNamed:@"添加"] forState:UIControlStateNormal];
-        [publishButton setBackgroundImage:[UIImage imageNamed:@"添加"] forState:UIControlStateHighlighted];
-        [self addSubview:publishButton];
-        [publishButton addTarget:self action:@selector(publishBtnclick) forControlEvents:UIControlEventTouchUpInside];
-        self.publishButton = publishButton;
+        plusBtn.size = plusBtn.currentBackgroundImage.size;
+        [plusBtn addTarget:self action:@selector(plusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:plusBtn];
+        self.plusBtn = plusBtn;
     }
     return self;
 }
 
-- (void)publishBtnclick{
-    if (self.ieDelegate && [self.ieDelegate respondsToSelector:@selector(tabBarDidClickPlusButton:)]) {
+- (void)plusBtnClick
+{
+    // 通知代理
+    if ([self.ieDelegate respondsToSelector:@selector(tabBarDidClickPlusButton:)]) {
         [self.ieDelegate tabBarDidClickPlusButton:self];
-    }else{
-        NSLog(@"error");
-        
     }
 }
 
 
+/**
+ *  想要重新排布系统控件subview的布局，推荐重写layoutSubviews，在调用父类布局后重新排布。
+ */
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    // 设置发布按钮的frame
-    self.publishButton.bounds = CGRectMake(0, 0, self.publishButton.currentBackgroundImage.size.width, self.publishButton.currentBackgroundImage.size.height);
-    self.publishButton.center = CGPointMake(self.frame.size.width * 0.5, self.frame.size.height * 0.5);
+    // 1.设置加号按钮的位置
+    self.plusBtn.centerX = self.width*0.5;
+    self.plusBtn.centerY = self.height*0.5;
     
-    // 设置其他UITabBarButton的frame
-    CGFloat buttonY = 0;
-    CGFloat buttonW = self.frame.size.width / 5;
-    CGFloat buttonH = self.frame.size.height;
-    NSInteger index = 0;
-    for (UIView *button in self.subviews) {
-        //        if (![button isKindOfClass:NSClassFromString(@"UITabBarButton")]) continue;
-        if (![button isKindOfClass:[UIControl class]] || button == self.publishButton) continue;
-        
-        // 计算按钮的x值
-        CGFloat buttonX = buttonW * ((index > 1)?(index + 1):index);
-        button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
-        
-        // 增加索引
-        index++;
+    // 2.设置其他tabbarButton的frame
+    CGFloat tabBarButtonW = self.width / 5;
+    CGFloat tabBarButtonIndex = 0;
+    for (UIView *child in self.subviews) {
+        Class class = NSClassFromString(@"UITabBarButton");
+        if ([child isKindOfClass:class]) {
+            // 设置x
+            child.x = tabBarButtonIndex * tabBarButtonW;
+            // 设置宽度
+            child.width = tabBarButtonW;
+            // 增加索引
+            tabBarButtonIndex++;
+            if (tabBarButtonIndex == 2) {
+                tabBarButtonIndex++;
+            }
+        }
     }
 }
-
-
 
 
 /*

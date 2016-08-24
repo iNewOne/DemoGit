@@ -18,6 +18,8 @@
 #import "IETabBar.h"
 #import "IENavigationViewController.h"
 
+#import "CenterViewController.h"
+
 #define IEWeakSelf(type) __weak typeof(type) weak##type = type;
 
 @interface MainViewController ()<IETabBarDelegate>
@@ -47,85 +49,68 @@
         
     } completion:^(BOOL finished) {
         
-        HomeViewController * vc1 = [[HomeViewController alloc]init];
-        vc1.tabBarItem.title = @"首页";
-        vc1.tabBarItem.selectedImage = [[UIImage imageNamed:@"首页选中"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        vc1.tabBarItem.image = [[UIImage imageNamed:@"首页未选中"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-        MessageViewController * vc2 = [[MessageViewController alloc]init];
-        vc2.tabBarItem.selectedImage = [[UIImage imageNamed:@"消息选中"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        vc2.tabBarItem.title = @"消息";
-        vc2.tabBarItem.image = [[UIImage imageNamed:@"消息未选中"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-        DiscoverViewController * vc3 = [[DiscoverViewController alloc]init];
-        vc3.tabBarItem.selectedImage = [[UIImage imageNamed:@"搜索选中"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        vc3.tabBarItem.title = @"搜索";
-        vc3.tabBarItem.image = [[UIImage imageNamed:@"搜索未选中"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-        MyViewController * vc4 = [[MyViewController alloc]init];
-        vc4.tabBarItem.title = @"我的";
-        vc4.tabBarItem.selectedImage = [[UIImage imageNamed:@"我的选中"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        vc4.tabBarItem.image = [[UIImage imageNamed:@"我的未选中"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-//        UITabBarController * vc = [[UITabBarController alloc]init];
-//        vc.viewControllers = @[na1, na2, na3, na4];
-//        vc.tabBar.backgroundColor = [UIColor orangeColor];
-//        vc.tabBar.translucent = YES;
+        [self addChildVC:[[HomeViewController alloc]init] title:@"首页" image:@"首页未选中" selectedImage:@"首页选中"];
+        [self addChildVC:[[MessageViewController alloc]init] title:@"消息" image:@"消息未选中" selectedImage:@"消息选中"];
+        [self addChildVC:[[DiscoverViewController alloc]init] title:@"搜索" image:@"搜索未选中" selectedImage:@"搜索选中"];
+        [self addChildVC:[[MyViewController alloc]init] title:@"我的" image:@"我的未选中" selectedImage:@"我的选中"];
         
         
-#pragma mark ------ 统一修改tabbar的选中，未选中文字状态
-        /**
-         *  UI_APPEARANCE_SELECTOR，都可以通过[UITabBarItem appearance]来设置
-         */
-        // 默认
-        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-        attrs[NSFontAttributeName] = [UIFont systemFontOfSize:12];
-        attrs[NSForegroundColorAttributeName] = [UIColor grayColor];
-        
-        // 选中
-        NSMutableDictionary *attrSelected = [NSMutableDictionary dictionary];
-        attrSelected[NSFontAttributeName] = [UIFont systemFontOfSize:12];
-        attrSelected[NSForegroundColorAttributeName] = [UIColor orangeColor];
-        
-        
-        UITabBarItem *item = [UITabBarItem appearance];
-        [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
-        [item setTitleTextAttributes:attrSelected forState:UIControlStateSelected];
         
         IETabBar *tabBar = [[IETabBar alloc] init];
         // 设置代理
         tabBar.ieDelegate = self;
         // KVC：如果要修系统的某些属性，但被设为readOnly，就是用KVC，即setValue：forKey：。
         // 修改tabBar为自定义tabBar
-//        [self setValue:tabBar forKey:@"tabBar"];
-        
-//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//        app.window.rootViewController = vc;
-        
-        IENavigationViewController * nav1 = [[IENavigationViewController alloc]initWithRootViewController:vc1];
-        IENavigationViewController * nav2 = [[IENavigationViewController alloc]initWithRootViewController:vc2];
-        IENavigationViewController * nav3 = [[IENavigationViewController alloc]initWithRootViewController:vc3];
-        IENavigationViewController * nav4 = [[IENavigationViewController alloc]initWithRootViewController:vc4];
-        
-        [self addChildViewController:nav1];
-        [self addChildViewController:nav2];
-        [self addChildViewController:nav3];
-        [self addChildViewController:nav4];
+        [self setValue:tabBar forKey:@"tabBar"];
 
-        
-        
-        
     }];
     
-    
-    // Do any additional setup after loading the view.
 }
+
+- (void)addChildVC:(UIViewController *)childVC
+             title:(NSString *)title
+             image:(NSString *)imageName
+     selectedImage:(NSString *)selectedImageName{
+    
+    childVC.title = title;
+    
+    childVC.tabBarItem.image = [[UIImage imageNamed:imageName]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    childVC.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    [childVC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]} forState:UIControlStateNormal];
+    [childVC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]} forState:UIControlStateSelected];
+    
+    
+    IENavigationViewController * nav = [[IENavigationViewController alloc]initWithRootViewController:childVC];
+    
+    
+    [self addChildViewController:nav];
+    
+}
+
+
 
 
 - (void)tabBarDidClickPlusButton:(IETabBar *)tabBar{
     NSLog(@"YES");
+    
+    CenterViewController * vc = [[CenterViewController alloc]init];
+//    vc.screenImage = [self screenShot];
+    [self presentViewController:vc animated:YES completion:nil];
+    
+    
 }
 
+
+- (UIImage *)screenShot{
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.view.frame.size.width, self.view.frame.size.height), YES, 3);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return viewImage;
+}
 
 
 

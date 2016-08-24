@@ -22,6 +22,7 @@
 		776082531D6C446B000B1631 /* IENavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776082521D6C446B000B1631 /* IENavigationViewController.m */; };
 		776082561D6C4482000B1631 /* IETabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 776082551D6C4482000B1631 /* IETabBar.m */; };
 		776082601D6C5D18000B1631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7760825F1D6C5D18000B1631 /* LaunchScreen.storyboard */; };
+		77A48FFF1D6DCC8C00E9B5B6 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A48FFE1D6DCC8C00E9B5B6 /* CenterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		776082541D6C4482000B1631 /* IETabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IETabBar.h; sourceTree = "<group>"; };
 		776082551D6C4482000B1631 /* IETabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IETabBar.m; sourceTree = "<group>"; };
 		7760825F1D6C5D18000B1631 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		77A48FFD1D6DCC8C00E9B5B6 /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
+		77A48FFE1D6DCC8C00E9B5B6 /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				776082481D6C43F7000B1631 /* MyViewController.m */,
 				7760824A1D6C4403000B1631 /* MainViewController.h */,
 				7760824B1D6C4403000B1631 /* MainViewController.m */,
+				77A48FFD1D6DCC8C00E9B5B6 /* CenterViewController.h */,
+				77A48FFE1D6DCC8C00E9B5B6 /* CenterViewController.m */,
 			);
 			name = ContentVC;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				77424B461D6D402D003EAF73 /* UIBarButtonItem+Extension.m in Sources */,
 				776082561D6C4482000B1631 /* IETabBar.m in Sources */,
 				7760823C1D6C414E000B1631 /* RegisterViewController.m in Sources */,
+				77A48FFF1D6DCC8C00E9B5B6 /* CenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
