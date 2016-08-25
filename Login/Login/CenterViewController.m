@@ -11,7 +11,9 @@
 
 #import "CenterViewController.h"
 
-@interface CenterViewController ()
+@interface CenterViewController (){
+    UIButton * button;
+}
 
 @end
 
@@ -23,7 +25,6 @@
 //    UIImageView * imageView = [[UIImageView alloc]initWithImage:self.screenImage];
 //    [self.view addSubview:imageView];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.view.alpha = 0.3;
     
     
     UIView * backView = [[UIView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 44, [UIScreen mainScreen].bounds.size.width, 44)];
@@ -31,20 +32,47 @@
     [self.view addSubview:backView];
     
     
-    UIButton * button = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 18, 4, 36, 36)];
-    [button setImage:[UIImage imageNamed:@"叉号"] forState:UIControlStateNormal];
+    button = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 18, 4, 36, 36)];
+    [button setImage:[UIImage imageNamed:@"tabbar_compose_background_icon_add"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:button];
     
     
-    
-    
+
     
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        button.transform = CGAffineTransformMakeRotation(M_PI / 4);//旋转180度
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+
+    
+}
+
+
 - (void)buttonClick{
-    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    [UIView setAnimationDuration:2];
+    
+    [UIView animateWithDuration:2 animations:^{
+        button.transform = CGAffineTransformMakeRotation(- M_PI / 4);//旋转180度
+        [button removeFromSuperview];
+    } completion:^(BOOL finished) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+
+    }];
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
