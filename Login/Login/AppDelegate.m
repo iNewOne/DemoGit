@@ -8,9 +8,15 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-
-
-@interface AppDelegate ()
+#import "HomeViewController.h"
+#import "MessageViewController.h"
+#import "DiscoverViewController.h"
+#import "MyViewController.h"
+#import "AppDelegate.h"
+#import "IETabBar.h"
+#import "IENavigationViewController.h"
+#import "CenterViewController.h"
+@interface AppDelegate ()<IETabBarDelegate>
 
 @end
 
@@ -24,30 +30,29 @@
     DBLog(@"%@", NSHomeDirectory());
     
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
     MainViewController * mainVC = [[MainViewController alloc]init];
-//    UINavigationController * na = [[UINavigationController alloc]initWithRootViewController:mainVC];
+
+    
+    [mainVC addChildVC:[[HomeViewController alloc]init] title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+    [mainVC addChildVC:[[MessageViewController alloc]init] title:@"消息" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
+    [mainVC addChildVC:[[DiscoverViewController alloc]init] title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
+    [mainVC addChildVC:[[MyViewController alloc]init] title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
+
 
     self.window.rootViewController = mainVC;
     
-    UIColor * color = [UIColor whiteColor];
+    UIColor * color = [UIColor grayColor];
     //这里我们设置的是颜色，还可以设置shadow等，具体可以参见api
     NSDictionary * dict = [NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
     //大功告成
     [UINavigationBar appearance].titleTextAttributes = dict;
     [UINavigationBar appearance].translucent = NO;
-    [UINavigationBar appearance].barTintColor = [UIColor lightGrayColor];
     
     [self.window makeKeyAndVisible];
-    
-    
-    
-    
-    
-    
-    
     
     return YES;
 }

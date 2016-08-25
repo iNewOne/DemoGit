@@ -10,6 +10,7 @@
  */
 
 #import "IENavigationViewController.h"
+#import "UINavigationBar+Extension.h"
 
 @interface IENavigationViewController ()
 
@@ -38,6 +39,7 @@
     [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
     [item setTitleTextAttributes:attrSelected forState:UIControlStateSelected];
     
+    
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
@@ -47,10 +49,10 @@
         viewController.hidesBottomBarWhenPushed = YES;
         
         // 定义leftBarButtonItem
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(back) image:@"navigationbar_back" highImage:@"返回"];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(back) image:@"返回" highImage:@"返回"];
         
         // 定义rightBarButtonItem
-        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(more) image:@"navigationbar_more" highImage:@"更多"];
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(more) image:@"返回" highImage:@"返回"];
     }
     
     [super pushViewController:viewController animated:animated];

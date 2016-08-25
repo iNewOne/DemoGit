@@ -13,4 +13,9 @@
 
 @interface MainViewController : UITabBarController
 
+- (void)addChildVC:(UIViewController *)childVC
+             title:(NSString *)title
+             image:(NSString *)imageName
+     selectedImage:(NSString *)selectedImageName;
+
 @end

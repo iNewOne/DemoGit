@@ -10,15 +10,10 @@
  */
 
 #import "MainViewController.h"
-#import "HomeViewController.h"
-#import "MessageViewController.h"
-#import "DiscoverViewController.h"
-#import "MyViewController.h"
-#import "AppDelegate.h"
-#import "IETabBar.h"
 #import "IENavigationViewController.h"
-
 #import "CenterViewController.h"
+#import "IETabBar.h"
+#import "WriteViewController.h"
 
 #define IEWeakSelf(type) __weak typeof(type) weak##type = type;
 
@@ -40,6 +35,14 @@
 //    IEWeakSelf(self);
     
     
+    IETabBar *tabBar = [[IETabBar alloc] init];
+    // 设置代理
+    tabBar.ieDelegate = self;
+    // KVC：如果要修系统的某些属性，但被设为readOnly，就是用KVC，即setValue：forKey：。
+    // 修改tabBar为自定义tabBar
+    [self setValue:tabBar forKey:@"tabBar"];
+    
+    
     [UIView animateWithDuration:1.5 animations:^{
         
         CGAffineTransform newTransform =
@@ -49,23 +52,12 @@
         
     } completion:^(BOOL finished) {
         
-        [self addChildVC:[[HomeViewController alloc]init] title:@"首页" image:@"首页未选中" selectedImage:@"首页选中"];
-        [self addChildVC:[[MessageViewController alloc]init] title:@"消息" image:@"消息未选中" selectedImage:@"消息选中"];
-        [self addChildVC:[[DiscoverViewController alloc]init] title:@"搜索" image:@"搜索未选中" selectedImage:@"搜索选中"];
-        [self addChildVC:[[MyViewController alloc]init] title:@"我的" image:@"我的未选中" selectedImage:@"我的选中"];
+        [imageView removeFromSuperview];
         
-        
-        
-        IETabBar *tabBar = [[IETabBar alloc] init];
-        // 设置代理
-        tabBar.ieDelegate = self;
-        // KVC：如果要修系统的某些属性，但被设为readOnly，就是用KVC，即setValue：forKey：。
-        // 修改tabBar为自定义tabBar
-        [self setValue:tabBar forKey:@"tabBar"];
-
     }];
     
 }
+
 
 - (void)addChildVC:(UIViewController *)childVC
              title:(NSString *)title
@@ -91,18 +83,6 @@
 
 
 
-
-- (void)tabBarDidClickPlusButton:(IETabBar *)tabBar{
-    NSLog(@"YES");
-    
-    CenterViewController * vc = [[CenterViewController alloc]init];
-//    vc.screenImage = [self screenShot];
-    [self presentViewController:vc animated:YES completion:nil];
-    
-    
-}
-
-
 - (UIImage *)screenShot{
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.view.frame.size.width, self.view.frame.size.height), YES, 3);
@@ -110,6 +90,30 @@
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return viewImage;
+}
+
+
+- (void)tabBarDidClickPlusButton:(IETabBar *)tabBar{
+    DBLog(@"点击button");
+    
+    CenterViewController * vc = [[CenterViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self presentViewController:vc animated:NO completion:nil];
+    
+    
+}
+
+
+- (void)tabBarDidLongPressPlusButton:(IETabBar *)tabBar{
+    DBLog(@"长按button");
+    
+    WriteViewController * vc = [[WriteViewController alloc]init];
+
+    IENavigationViewController * na = [[IENavigationViewController alloc]initWithRootViewController:vc];
+    na.hidesBottomBarWhenPushed = YES;
+    [self presentViewController:na animated:YES completion:nil];
+    
+    
 }
 
 

@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"搜索";
+    self.title = @"发现";
     // Do any additional setup after loading the view.
 }
 

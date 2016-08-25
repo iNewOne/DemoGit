@@ -20,8 +20,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"首页";
-    self.view.backgroundColor = [UIColor orangeColor];
+    
+    
+    UIButton * radia = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [radia setImage:[UIImage imageNamed:@"navigationbar_icon_radar"] forState:UIControlStateNormal];
+    [radia addTarget:self action:@selector(radiaAction) forControlEvents:UIControlEventTouchUpInside];
+    [radia setImage:[UIImage imageNamed:@"navigationbar_icon_radar_highlighted"] forState:UIControlStateHighlighted];
+    
+    UIBarButtonItem * item = [[UIBarButtonItem alloc]initWithCustomView:radia];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    
     // Do any additional setup after loading the view.
+}
+
+- (void)radiaAction{
+    
 }
 
 - (void)didReceiveMemoryWarning {

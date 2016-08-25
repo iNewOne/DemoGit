@@ -17,6 +17,8 @@
 
 - (void)tabBarDidClickPlusButton:(IETabBar *)tabBar;
 
+- (void)tabBarDidLongPressPlusButton:(IETabBar *)tabBar;
+
 @end
 
 @interface IETabBar : UITabBar
