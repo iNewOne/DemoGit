@@ -26,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    DBLog(@"viewDidLoad");
+    
     UIView * titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 5, 200, 44)];
     UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
     label1.text = @"发微博";

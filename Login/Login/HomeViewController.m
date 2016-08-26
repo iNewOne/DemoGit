@@ -10,7 +10,9 @@
  */
 
 #import "HomeViewController.h"
-
+#import "ScanViewController.h"
+#import <LocalAuthentication/LocalAuthentication.h>
+#import <AVFoundation/AVFoundation.h>
 @interface HomeViewController ()
 
 @end
@@ -21,7 +23,7 @@
     [super viewDidLoad];
     self.title = @"首页";
     
-    
+    self.view.backgroundColor = [UIColor clearColor];
     UIButton * radia = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
     [radia setImage:[UIImage imageNamed:@"navigationbar_icon_radar"] forState:UIControlStateNormal];
     [radia addTarget:self action:@selector(radiaAction) forControlEvents:UIControlEventTouchUpInside];
@@ -36,6 +38,24 @@
 
 - (void)radiaAction{
     
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    
+    if (authStatus == AVAuthorizationStatusRestricted|| authStatus == AVAuthorizationStatusDenied) {
+        
+        // 获取摄像头失败
+        DBLog(@"失败");
+        
+    }else{
+        DBLog(@"成功");
+        // 获取摄像头成功
+        ScanViewController * vc = [[ScanViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:NO];
+    }
+    
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

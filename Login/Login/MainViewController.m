@@ -11,13 +11,31 @@
 
 #import "MainViewController.h"
 #import "IENavigationViewController.h"
-#import "CenterViewController.h"
 #import "IETabBar.h"
 #import "WriteViewController.h"
+#import "UIView+Screen.h"
+#import "UIImage+BlurGlass.h"
 
-#define IEWeakSelf(type) __weak typeof(type) weak##type = type;
+#define IEWeakSelf(type) __block typeof(type) weak##type = type;
 
-@interface MainViewController ()<IETabBarDelegate>
+@interface MainViewController ()<IETabBarDelegate>{
+    
+    /**
+     *  点击中间按钮的弹出View
+     */
+    UIImageView * maskView;
+    
+    UIButton * button;
+    
+    UIView * backView;
+    
+    
+    UIView * springView;
+    
+    
+    
+    
+}
 
 @end
 
@@ -42,7 +60,6 @@
     // 修改tabBar为自定义tabBar
     [self setValue:tabBar forKey:@"tabBar"];
     
-    
     [UIView animateWithDuration:1.5 animations:^{
         
         CGAffineTransform newTransform =
@@ -55,6 +72,32 @@
         [imageView removeFromSuperview];
         
     }];
+    
+    
+    maskView = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    
+    backView = [[UIView alloc]initWithFrame:self.tabBar.frame];
+    backView.backgroundColor = [UIColor whiteColor];
+    [maskView addSubview:backView];
+    
+    
+    button = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 18, 4, 36, 36)];
+    [button setImage:[UIImage imageNamed:@"tabbar_compose_background_icon_add"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:button];
+    
+    
+    
+    springView = [[UIView alloc]initWithFrame:CGRectMake(20, ScreenHeight + 200, 100, 100)];
+    springView.backgroundColor = [UIColor redColor];
+    UIImage * image = [UIImage imageNamed:@"tabbar_compose_camera"];
+    [maskView addSubview:springView];
+    
+    UIImageView * demoView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    demoView.image = image;
+    [springView addSubview:demoView];
+    
     
 }
 
@@ -75,37 +118,72 @@
     
     
     IENavigationViewController * nav = [[IENavigationViewController alloc]initWithRootViewController:childVC];
-    
-    
     [self addChildViewController:nav];
     
 }
 
 
-
-- (UIImage *)screenShot{
+- (void)tabBarDidClickPlusButton:(IETabBar *)tabBar{
+//    DBLog(@"点击button");
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.view.frame.size.width, self.view.frame.size.height), YES, 3);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return viewImage;
+    [self updateBlur];
+    
+    
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        springView.origin = CGPointMake(20, 200);
+        maskView.alpha = 1;
+        button.transform = CGAffineTransformRotate(button.transform, M_PI / 4);
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    
+    
+//    CenterViewController * vc = [[CenterViewController alloc]init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self presentViewController:vc animated:NO completion:nil];
+    
+    
 }
 
 
-- (void)tabBarDidClickPlusButton:(IETabBar *)tabBar{
-    DBLog(@"点击button");
+- (void)updateBlur{
     
-    CenterViewController * vc = [[CenterViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self presentViewController:vc animated:NO completion:nil];
+    [self.view.superview addSubview:maskView];
+    
+    UIImage * shotImage = [self.view convertViewToImage];
+    
+    UIImage * newImage = [shotImage imgWithBlur];
+
+    maskView.image = newImage;
+    maskView.userInteractionEnabled = YES;
+    
+
+}
+
+- (void)buttonClick{
+    
+//    [UIView setAnimationDuration:0.2];
+
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        springView.origin = CGPointMake(20, ScreenHeight + 200);
+        button.transform=CGAffineTransformRotate(button.transform, - M_PI / 4);
+
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            maskView.alpha = 0;
+            [maskView removeFromSuperview];
+
+        }];
+
+    }];
     
     
 }
 
 
 - (void)tabBarDidLongPressPlusButton:(IETabBar *)tabBar{
-    DBLog(@"长按button");
+//    DBLog(@"长按button");
     
     WriteViewController * vc = [[WriteViewController alloc]init];
 

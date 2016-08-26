@@ -10,7 +10,6 @@
  */
 
 #import "IENavigationViewController.h"
-#import "UINavigationBar+Extension.h"
 
 @interface IENavigationViewController ()
 
@@ -42,6 +41,16 @@
     
 }
 
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//    UIViewController * vc = self.topViewController;
+//    return vc.preferredStatusBarStyle;
+//}
+
+- (UIViewController *)childViewControllerForStatusBarStyle{
+    return self.topViewController;
+}
+
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
     if (self.viewControllers.count > 0) {
@@ -49,10 +58,10 @@
         viewController.hidesBottomBarWhenPushed = YES;
         
         // 定义leftBarButtonItem
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(back) image:@"返回" highImage:@"返回"];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(back) image:@"hotweibo_back_icon_highlighted" highImage:@"hotweibo_back_icon_highlighted"];
         
         // 定义rightBarButtonItem
-        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(more) image:@"返回" highImage:@"返回"];
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTargat:self action:@selector(more) image:@"music_more_highlighted@2x" highImage:@"music_more_highlighted@2x"];
     }
     
     [super pushViewController:viewController animated:animated];

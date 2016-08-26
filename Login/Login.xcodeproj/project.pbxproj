@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7707BD341D6FCC6C002E8D2B /* UIView+Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7707BD331D6FCC6C002E8D2B /* UIView+Screen.m */; };
+		7707BD361D6FCDB7002E8D2B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7707BD351D6FCDB7002E8D2B /* Accelerate.framework */; };
+		7707C1A01D6FDB26002E8D2B /* UIImage+BlurGlass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7707C19F1D6FDB26002E8D2B /* UIImage+BlurGlass.m */; };
+		7707C1A31D6FE772002E8D2B /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7707C1A21D6FE772002E8D2B /* ScanViewController.m */; };
+		7707C1A51D70149F002E8D2B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7707C1A41D70149F002E8D2B /* AVFoundation.framework */; };
 		77424B431D6D3FCB003EAF73 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 77424B421D6D3FCB003EAF73 /* UIView+Extension.m */; };
 		77424B461D6D402D003EAF73 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 77424B451D6D402D003EAF73 /* UIBarButtonItem+Extension.m */; };
 		776082221D6C4119000B1631 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 776082211D6C4119000B1631 /* main.m */; };
@@ -22,12 +27,19 @@
 		776082531D6C446B000B1631 /* IENavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776082521D6C446B000B1631 /* IENavigationViewController.m */; };
 		776082561D6C4482000B1631 /* IETabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 776082551D6C4482000B1631 /* IETabBar.m */; };
 		776082601D6C5D18000B1631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7760825F1D6C5D18000B1631 /* LaunchScreen.storyboard */; };
-		77A48FFF1D6DCC8C00E9B5B6 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A48FFE1D6DCC8C00E9B5B6 /* CenterViewController.m */; };
-		77F43E391D6F12F500CE3984 /* UINavigationBar+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F43E381D6F12F500CE3984 /* UINavigationBar+Extension.m */; };
+		776616661D702A4100CCB121 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 776616651D702A4100CCB121 /* LocalAuthentication.framework */; };
 		77F43E3F1D6F18F900CE3984 /* WriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F43E3E1D6F18F900CE3984 /* WriteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7707BD321D6FCC6C002E8D2B /* UIView+Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screen.h"; sourceTree = "<group>"; };
+		7707BD331D6FCC6C002E8D2B /* UIView+Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screen.m"; sourceTree = "<group>"; };
+		7707BD351D6FCDB7002E8D2B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7707C19E1D6FDB26002E8D2B /* UIImage+BlurGlass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlurGlass.h"; sourceTree = "<group>"; };
+		7707C19F1D6FDB26002E8D2B /* UIImage+BlurGlass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlurGlass.m"; sourceTree = "<group>"; };
+		7707C1A11D6FE772002E8D2B /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		7707C1A21D6FE772002E8D2B /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
+		7707C1A41D70149F002E8D2B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		77424B411D6D3FCB003EAF73 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		77424B421D6D3FCB003EAF73 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		77424B441D6D402D003EAF73 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
@@ -58,10 +70,7 @@
 		776082541D6C4482000B1631 /* IETabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IETabBar.h; sourceTree = "<group>"; };
 		776082551D6C4482000B1631 /* IETabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IETabBar.m; sourceTree = "<group>"; };
 		7760825F1D6C5D18000B1631 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		77A48FFD1D6DCC8C00E9B5B6 /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
-		77A48FFE1D6DCC8C00E9B5B6 /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
-		77F43E371D6F12F500CE3984 /* UINavigationBar+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Extension.h"; sourceTree = "<group>"; };
-		77F43E381D6F12F500CE3984 /* UINavigationBar+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Extension.m"; sourceTree = "<group>"; };
+		776616651D702A4100CCB121 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		77F43E3D1D6F18F900CE3984 /* WriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteViewController.h; sourceTree = "<group>"; };
 		77F43E3E1D6F18F900CE3984 /* WriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,12 +80,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				776616661D702A4100CCB121 /* LocalAuthentication.framework in Frameworks */,
+				7707C1A51D70149F002E8D2B /* AVFoundation.framework in Frameworks */,
+				7707BD361D6FCDB7002E8D2B /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7707BD371D6FCDBD002E8D2B /* FrameWork */ = {
+			isa = PBXGroup;
+			children = (
+				776616651D702A4100CCB121 /* LocalAuthentication.framework */,
+				7707C1A41D70149F002E8D2B /* AVFoundation.framework */,
+				7707BD351D6FCDB7002E8D2B /* Accelerate.framework */,
+			);
+			name = FrameWork;
+			sourceTree = "<group>";
+		};
 		77424B401D6D3F9B003EAF73 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +106,10 @@
 				77424B421D6D3FCB003EAF73 /* UIView+Extension.m */,
 				77424B441D6D402D003EAF73 /* UIBarButtonItem+Extension.h */,
 				77424B451D6D402D003EAF73 /* UIBarButtonItem+Extension.m */,
+				7707BD321D6FCC6C002E8D2B /* UIView+Screen.h */,
+				7707BD331D6FCC6C002E8D2B /* UIView+Screen.m */,
+				7707C19E1D6FDB26002E8D2B /* UIImage+BlurGlass.h */,
+				7707C19F1D6FDB26002E8D2B /* UIImage+BlurGlass.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -91,6 +117,7 @@
 		776082141D6C4119000B1631 = {
 			isa = PBXGroup;
 			children = (
+				7707BD371D6FCDBD002E8D2B /* FrameWork */,
 				7760821F1D6C4119000B1631 /* Login */,
 				7760821E1D6C4119000B1631 /* Products */,
 			);
@@ -146,10 +173,10 @@
 				776082481D6C43F7000B1631 /* MyViewController.m */,
 				7760824A1D6C4403000B1631 /* MainViewController.h */,
 				7760824B1D6C4403000B1631 /* MainViewController.m */,
-				77A48FFD1D6DCC8C00E9B5B6 /* CenterViewController.h */,
-				77A48FFE1D6DCC8C00E9B5B6 /* CenterViewController.m */,
 				77F43E3D1D6F18F900CE3984 /* WriteViewController.h */,
 				77F43E3E1D6F18F900CE3984 /* WriteViewController.m */,
+				7707C1A11D6FE772002E8D2B /* ScanViewController.h */,
+				7707C1A21D6FE772002E8D2B /* ScanViewController.m */,
 			);
 			name = ContentVC;
 			sourceTree = "<group>";
@@ -161,8 +188,6 @@
 				776082521D6C446B000B1631 /* IENavigationViewController.m */,
 				776082541D6C4482000B1631 /* IETabBar.h */,
 				776082551D6C4482000B1631 /* IETabBar.m */,
-				77F43E371D6F12F500CE3984 /* UINavigationBar+Extension.h */,
-				77F43E381D6F12F500CE3984 /* UINavigationBar+Extension.m */,
 			);
 			name = CustomeClass;
 			sourceTree = "<group>";
@@ -237,6 +262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				776082431D6C425E000B1631 /* MessageViewController.m in Sources */,
+				7707C1A31D6FE772002E8D2B /* ScanViewController.m in Sources */,
+				7707C1A01D6FDB26002E8D2B /* UIImage+BlurGlass.m in Sources */,
 				776082531D6C446B000B1631 /* IENavigationViewController.m in Sources */,
 				776082251D6C4119000B1631 /* AppDelegate.m in Sources */,
 				776082491D6C43F7000B1631 /* MyViewController.m in Sources */,
@@ -245,13 +272,12 @@
 				77424B431D6D3FCB003EAF73 /* UIView+Extension.m in Sources */,
 				776082221D6C4119000B1631 /* main.m in Sources */,
 				776082391D6C413C000B1631 /* LoginViewController.m in Sources */,
-				77F43E391D6F12F500CE3984 /* UINavigationBar+Extension.m in Sources */,
 				77F43E3F1D6F18F900CE3984 /* WriteViewController.m in Sources */,
 				7760823F1D6C4203000B1631 /* HomeViewController.m in Sources */,
+				7707BD341D6FCC6C002E8D2B /* UIView+Screen.m in Sources */,
 				77424B461D6D402D003EAF73 /* UIBarButtonItem+Extension.m in Sources */,
 				776082561D6C4482000B1631 /* IETabBar.m in Sources */,
 				7760823C1D6C414E000B1631 /* RegisterViewController.m in Sources */,
-				77A48FFF1D6DCC8C00E9B5B6 /* CenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
