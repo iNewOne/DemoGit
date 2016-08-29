@@ -16,9 +16,9 @@
 @interface ScanViewController ()<AVCaptureMetadataOutputObjectsDelegate>{
     
     
+    UIView * containerView;
     
-    
-    
+    CGRect boxRect;
     
     
 }
@@ -33,7 +33,7 @@
 
 @property (strong,nonatomic)AVCaptureVideoPreviewLayer * preview;
 
-
+@property (nonatomic, strong) UIView * boxView;
 
 
 @end
@@ -44,33 +44,42 @@
     [super viewDidLoad];
     self.title = @"扫一扫";
     
-
-//    [self setNeedsStatusBarAppearanceUpdate];
-    
-    
-//    UIColor * blackColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-//    CGSize imageSize = CGSizeMake(ScreenWidth, self.navigationController.navigationBar.size.height + 20);
-//    UIImage * backImage = [self createImageFromColor:blackColor imageSize:imageSize];
     
     
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];;
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
 
-
-
+    
+    containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    containerView.backgroundColor = [UIColor blackColor];
+    containerView.alpha = 0.5;
     
     
+//    UIView * naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 64)];
+//    naviView.backgroundColor = [UIColor blackColor];
+//    naviView.alpha = 0.7;
+//    
+//    [containerView addSubview:naviView];
+//    
+//    
+//    UIButton * cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 26, 50, 22)];
+//    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+//    [cancelButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+//    [cancelButton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
+//    cancelButton.alpha = 1;
+//    [naviView addSubview:cancelButton];
     
-    UIView * containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-
-    [self preferredStatusBarStyle];
+    UIBezierPath *rectPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    //    [rectPath appendPath:[[UIBezierPath bezierPathWithRect:CM((SCREEN_WIDTH - 250) / 2, 66, 250, 250)] bezierPathByReversingPath]];
+    [rectPath appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake((ScreenWidth - 250) / 2, ScreenHeight / 2 - 64 - 125, 250, 250) cornerRadius:1] bezierPathByReversingPath]];
+    
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = rectPath.CGPath;
+    
+    containerView.layer.mask = shapeLayer;
     
     
-    UIView * naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 64)];
-    naviView.backgroundColor = [UIColor blackColor];
-    naviView.alpha = 0.3;
-    
-    [containerView addSubview:naviView];
+//    boxRect = [_boxView convertRect:_boxView.frame toView:containerView];
     
 
     [[UIApplication sharedApplication].keyWindow addSubview:containerView];
@@ -134,17 +143,37 @@
     
     _preview.frame = containerView.bounds;
     
-    [containerView.layer insertSublayer:_preview atIndex:0];
+    [self.view.layer insertSublayer:_preview atIndex:0];
+    
+    [_session startRunning];
+
+   
+    /**这部分需要放在startRunning后生效*/
+    CGRect rect = CGRectMake((ScreenWidth - 250) / 2, ScreenHeight / 2 - 64 - 125, 250, 250);
+    CGRect intertRect = [_preview metadataOutputRectOfInterestForRect:rect];
+    
+    CGRect layerRect = [_preview rectForMetadataOutputRectOfInterest:intertRect];
+    
+    
+    _output.rectOfInterest = [_output metadataOutputRectOfInterestForRect:intertRect];
+    NSLog(@"%@------%@", NSStringFromCGRect(intertRect), NSStringFromCGRect(layerRect));
+    
     
     // Start
     
-    [_session startRunning];
     
 
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
+}
+
+
+- (void)cancelAction{
+    
+    [containerView removeFromSuperview];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 
@@ -171,15 +200,15 @@
         
         stringValue = metadataObject.stringValue;
         
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"提示" message:stringValue delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
     }
     
     
 }
 
 
-- (void)cancelAction{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 
 - (UIImage *)createImageFromColor:(UIColor *)color imageSize:(CGSize)imageSize{

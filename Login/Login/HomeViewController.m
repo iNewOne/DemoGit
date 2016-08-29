@@ -50,7 +50,8 @@
         // 获取摄像头成功
         ScanViewController * vc = [[ScanViewController alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:NO];
+//        [self.navigationController pushViewController:vc animated:NO];
+        [self presentViewController:vc animated:NO completion:nil];
     }
     
     
